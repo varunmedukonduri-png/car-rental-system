@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DriveEasy | User Portal</title>
+  <link rel="stylesheet" href="user-portal.css">
+  <link rel="stylesheet" href="user-portal.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Drive<span>Easy</span></a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#fleet">Browse Cars</a>
+      <button id="myBookingsBtn" class="outline hidden" type="button">My Bookings</button>
+      <button id="authButton" type="button">Sign In</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">DRIVE EASY · USER PORTAL</p>
+        <h1>Find the right car<br><span>for your journey.</span></h1>
+        <p>Browse the live fleet added by the admin, filter by vehicle type, save favourites and request a booking.</p>
+        <a class="hero-cta" href="#fleet">Explore available cars</a>
+      </div>
+      <div class="hero-stat"><strong id="fleetCount">0</strong><span>vehicles in the fleet</span></div>
+    </section>
+
+    <section class="content" id="fleet">
+      <div class="section-heading">
+        <div><p class="eyebrow">CHOOSE YOUR RIDE</p><h2>Available vehicles</h2></div>
+        <button id="shortlistToggle" class="outline" type="button">♡ My Shortlist <span id="shortlistCount">0</span></button>
+      </div>
+
+      <div class="filters">
+        <label>Search<input id="searchInput" type="search" placeholder="Search car name or fuel"></label>
+        <label>Car type<select id="typeFilter"><option value="">All types</option></select></label>
+        <label>Transmission<select id="transFilter"><option value="">All transmissions</option><option>Automatic</option><option>Manual</option></select></label>
+        <label>Sort by<select id="sortFilter"><option value="">Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></label>
+        <label>Pickup date<input id="pickupDate" type="date"></label>
+        <label>Return date<input id="returnDate" type="date"></label>
+      </div>
+
+      <p id="resultsInfo" class="results-info" aria-live="polite"></p>
+      <div id="carGrid" class="car-grid"></div>
+    </section>
+  </main>
+
+  <footer>© 2026 DriveEasy · Demo user portal</footer>
+
+  <div class="modal" id="authModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" data-close="authModal" aria-label="Close">×</button>
+      <div class="modal-tabs"><button id="loginTab" class="active" type="button">Sign In</button><button id="registerTab" type="button">Create Account</button></div>
+      <form id="authForm">
+        <h2 id="authTitle">Welcome back</h2>
+        <div id="nameField" class="hidden"><label>Full name<input id="fullName" autocomplete="name"></label></div>
+        <label>Email<input id="email" type="email" autocomplete="email" required></label>
+        <label>Password<input id="password" type="password" minlength="6" autocomplete="current-password" required></label>
+        <p id="authError" class="error" aria-live="polite"></p>
+        <button class="primary full" id="authSubmit" type="submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="bookingModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" data-close="bookingModal" aria-label="Close">×</button>
+      <p class="eyebrow">BOOK YOUR VEHICLE</p>
+      <h2 id="bookingCarName">Car name</h2>
+      <p id="bookingCarMeta" class="muted"></p>
+      <form id="bookingForm">
+        <label>Pickup date<input id="bookingStart" type="date" required></label>
+        <label>Return date<input id="bookingEnd" type="date" required></label>
+        <div id="bookingTotal" class="total">Choose your rental dates</div>
+        <p class="fine-print">This demo creates a booking request. No payment is collected online.</p>
+        <p id="bookingError" class="error" aria-live="polite"></p>
+        <button class="primary full" type="submit">Send booking request</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="bookingsModal" aria-hidden="true">
+    <div class="modal-card wide">
+      <button class="close" data-close="bookingsModal" aria-label="Close">×</button>
+      <h2>My bookings</h2>
+      <div id="bookingList"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="db.js"></script>
+  <script src="user-portal.js"></script>
+</body>
+</html>
